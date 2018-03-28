@@ -1,0 +1,1994 @@
+{
+  "basePath": "/regiekinderopvang/koza/v1",
+  "paths": {
+    "/requests/{requestid}": {
+      "get": {
+        "summary": "Get request",
+        "x-context-name": "requestId",
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "x-context-location": "path",
+        "produces": [
+          "application/json",
+          "application/xml",
+          "text/html"
+        ],
+        "description": "",
+        "operationId": "koza.api.rest.request.get",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/koza.api.types.request.request"
+            },
+            "description": "The request was successful"
+          },
+          "204": {
+            "description": "The request was successful but no content will be returned"
+          },
+          "304": {
+            "description": "The resource has not changed since the last modified"
+          },
+          "401": {
+            "description": "The user is not authenticated, after authentication the request can be retried"
+          },
+          "403": {
+            "description": "The user is authenticated but does not have permission to run this service"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/StructuredErrorResponse"
+            },
+            "description": "The request could not be processed correctly by the server"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "requestid",
+            "pattern": "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}",
+            "format": "uuid",
+            "description": "The id of the request",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "tags": [
+          "Requests"
+        ]
+      },
+      "put": {
+        "summary": "Update request",
+        "x-context-name": "requestId",
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "x-context-location": "path",
+        "produces": [
+          "application/json",
+          "application/xml",
+          "text/html"
+        ],
+        "description": "",
+        "operationId": "koza.api.rest.request.update",
+        "responses": {
+          "204": {
+            "description": "The request was successful but no content will be returned"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/StructuredErrorResponse"
+            },
+            "description": "The request is invalid"
+          },
+          "401": {
+            "description": "The user is not authenticated, after authentication the request can be retried"
+          },
+          "403": {
+            "description": "The user is authenticated but does not have permission to run this service"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/StructuredErrorResponse"
+            },
+            "description": "The request could not be processed correctly by the server"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "requestid",
+            "pattern": "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}",
+            "format": "uuid",
+            "description": "The id of the request",
+            "type": "string",
+            "required": true
+          },
+          {
+            "schema": {
+              "$ref": "#/definitions/koza.api.types.request.update"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "tags": [
+          "Requests"
+        ]
+      }
+    },
+    "/childcares": {
+      "get": {
+        "summary": "List childcares",
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "produces": [
+          "application/json",
+          "application/xml",
+          "text/html"
+        ],
+        "description": "",
+        "operationId": "koza.api.rest.childCare.list",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/koza.api.types.childCare.childCareList"
+            },
+            "description": "The request was successful"
+          },
+          "204": {
+            "description": "The request was successful but no content will be returned"
+          },
+          "304": {
+            "description": "The resource has not changed since the last modified"
+          },
+          "401": {
+            "description": "The user is not authenticated, after authentication the request can be retried"
+          },
+          "403": {
+            "description": "The user is authenticated but does not have permission to run this service"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/StructuredErrorResponse"
+            },
+            "description": "The request could not be processed correctly by the server"
+          }
+        },
+        "parameters": [],
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "tags": [
+          "Childcares"
+        ]
+      }
+    },
+    "/requests/{requestid}/transition/approve": {
+      "post": {
+        "summary": "Approve request",
+        "x-context-name": "requestId",
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "x-context-location": "path",
+        "produces": [
+          "application/json",
+          "application/xml",
+          "text/html"
+        ],
+        "description": "",
+        "operationId": "koza.api.rest.request.transition.approve",
+        "responses": {
+          "204": {
+            "description": "The request was successful but no content will be returned"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/StructuredErrorResponse"
+            },
+            "description": "The request is invalid"
+          },
+          "401": {
+            "description": "The user is not authenticated, after authentication the request can be retried"
+          },
+          "403": {
+            "description": "The user is authenticated but does not have permission to run this service"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/StructuredErrorResponse"
+            },
+            "description": "The request could not be processed correctly by the server"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "requestid",
+            "pattern": "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}",
+            "format": "uuid",
+            "description": "The id of the request",
+            "type": "string",
+            "required": true
+          },
+          {
+            "schema": {
+              "$ref": "#/definitions/koza.api.types.request.transitionFeedback"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "tags": [
+          "Requests"
+        ]
+      }
+    },
+    "/requests": {
+      "get": {
+        "summary": "List requests",
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "produces": [
+          "application/json",
+          "application/xml",
+          "text/html"
+        ],
+        "description": "",
+        "operationId": "koza.api.rest.request.list",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/koza.api.types.request.requestList"
+            },
+            "description": "The request was successful"
+          },
+          "204": {
+            "description": "The request was successful but no content will be returned"
+          },
+          "304": {
+            "description": "The resource has not changed since the last modified"
+          },
+          "401": {
+            "description": "The user is not authenticated, after authentication the request can be retried"
+          },
+          "403": {
+            "description": "The user is authenticated but does not have permission to run this service"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/StructuredErrorResponse"
+            },
+            "description": "The request could not be processed correctly by the server"
+          }
+        },
+        "parameters": [
+          {
+            "in": "query",
+            "name": "from",
+            "format": "date-time",
+            "description": "Get all requests modified from this date (inclusive)",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "until",
+            "format": "date-time",
+            "description": "Get all requests modified until this date (exclusive)",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "tags": [
+          "Requests"
+        ]
+      }
+    },
+    "/requests/{requestid}/transition/requestorcancels/new": {
+      "post": {
+        "summary": "Refuse pending request",
+        "x-context-name": "requestId",
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "x-context-location": "path",
+        "produces": [
+          "application/json",
+          "application/xml",
+          "text/html"
+        ],
+        "description": "",
+        "operationId": "koza.api.rest.request.transition.requestorCancelsNew",
+        "responses": {
+          "204": {
+            "description": "The request was successful but no content will be returned"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/StructuredErrorResponse"
+            },
+            "description": "The request is invalid"
+          },
+          "401": {
+            "description": "The user is not authenticated, after authentication the request can be retried"
+          },
+          "403": {
+            "description": "The user is authenticated but does not have permission to run this service"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/StructuredErrorResponse"
+            },
+            "description": "The request could not be processed correctly by the server"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "requestid",
+            "pattern": "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}",
+            "format": "uuid",
+            "description": "The id of the request",
+            "type": "string",
+            "required": true
+          },
+          {
+            "schema": {
+              "$ref": "#/definitions/koza.api.types.request.transitionFeedback"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "tags": [
+          "Requests"
+        ]
+      }
+    },
+    "/requests/{requestid}/transition/accept": {
+      "post": {
+        "summary": "Accept request",
+        "x-context-name": "requestId",
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "x-context-location": "path",
+        "produces": [
+          "application/json",
+          "application/xml",
+          "text/html"
+        ],
+        "description": "",
+        "operationId": "koza.api.rest.request.transition.accept",
+        "responses": {
+          "204": {
+            "description": "The request was successful but no content will be returned"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/StructuredErrorResponse"
+            },
+            "description": "The request is invalid"
+          },
+          "401": {
+            "description": "The user is not authenticated, after authentication the request can be retried"
+          },
+          "403": {
+            "description": "The user is authenticated but does not have permission to run this service"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/StructuredErrorResponse"
+            },
+            "description": "The request could not be processed correctly by the server"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "requestid",
+            "pattern": "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}",
+            "format": "uuid",
+            "description": "The id of the request",
+            "type": "string",
+            "required": true
+          },
+          {
+            "schema": {
+              "$ref": "#/definitions/koza.api.types.request.transitionFeedback"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "tags": [
+          "Requests"
+        ]
+      }
+    },
+    "/childcares/{childcareid}": {
+      "get": {
+        "summary": "Get childcare",
+        "x-context-name": "childCareId",
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "x-context-location": "path",
+        "produces": [
+          "application/json",
+          "application/xml",
+          "text/html"
+        ],
+        "description": "",
+        "operationId": "koza.api.rest.childCare.get",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/koza.api.types.childCare.childCare"
+            },
+            "description": "The request was successful"
+          },
+          "204": {
+            "description": "The request was successful but no content will be returned"
+          },
+          "304": {
+            "description": "The resource has not changed since the last modified"
+          },
+          "401": {
+            "description": "The user is not authenticated, after authentication the request can be retried"
+          },
+          "403": {
+            "description": "The user is authenticated but does not have permission to run this service"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/StructuredErrorResponse"
+            },
+            "description": "The request could not be processed correctly by the server"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "childcareid",
+            "pattern": "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}",
+            "format": "uuid",
+            "description": "The id of the childcare",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "tags": [
+          "Childcares"
+        ]
+      }
+    },
+    "/requests/{requestid}/transition/kdvcancels/approved": {
+      "post": {
+        "summary": "Refuse pending request",
+        "x-context-name": "requestId",
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "x-context-location": "path",
+        "produces": [
+          "application/json",
+          "application/xml",
+          "text/html"
+        ],
+        "description": "",
+        "operationId": "koza.api.rest.request.transition.kdvCancelsApproved",
+        "responses": {
+          "204": {
+            "description": "The request was successful but no content will be returned"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/StructuredErrorResponse"
+            },
+            "description": "The request is invalid"
+          },
+          "401": {
+            "description": "The user is not authenticated, after authentication the request can be retried"
+          },
+          "403": {
+            "description": "The user is authenticated but does not have permission to run this service"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/StructuredErrorResponse"
+            },
+            "description": "The request could not be processed correctly by the server"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "requestid",
+            "pattern": "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}",
+            "format": "uuid",
+            "description": "The id of the request",
+            "type": "string",
+            "required": true
+          },
+          {
+            "schema": {
+              "$ref": "#/definitions/koza.api.types.request.transitionFeedback"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "tags": [
+          "Requests"
+        ]
+      }
+    },
+    "/requests/{requestid}/transition/refuse/pending": {
+      "post": {
+        "summary": "Refuse pending request",
+        "x-context-name": "requestId",
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "x-context-location": "path",
+        "produces": [
+          "application/json",
+          "application/xml",
+          "text/html"
+        ],
+        "description": "",
+        "operationId": "koza.api.rest.request.transition.refusePending",
+        "responses": {
+          "204": {
+            "description": "The request was successful but no content will be returned"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/StructuredErrorResponse"
+            },
+            "description": "The request is invalid"
+          },
+          "401": {
+            "description": "The user is not authenticated, after authentication the request can be retried"
+          },
+          "403": {
+            "description": "The user is authenticated but does not have permission to run this service"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/StructuredErrorResponse"
+            },
+            "description": "The request could not be processed correctly by the server"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "requestid",
+            "pattern": "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}",
+            "format": "uuid",
+            "description": "The id of the request",
+            "type": "string",
+            "required": true
+          },
+          {
+            "schema": {
+              "$ref": "#/definitions/koza.api.types.request.transitionFeedback"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "tags": [
+          "Requests"
+        ]
+      }
+    },
+    "/requests/{requestid}/transition/refuse/new": {
+      "post": {
+        "summary": "Refuse new request",
+        "x-context-name": "requestId",
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "x-context-location": "path",
+        "produces": [
+          "application/json",
+          "application/xml",
+          "text/html"
+        ],
+        "description": "",
+        "operationId": "koza.api.rest.request.transition.refuseNew",
+        "responses": {
+          "204": {
+            "description": "The request was successful but no content will be returned"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/StructuredErrorResponse"
+            },
+            "description": "The request is invalid"
+          },
+          "401": {
+            "description": "The user is not authenticated, after authentication the request can be retried"
+          },
+          "403": {
+            "description": "The user is authenticated but does not have permission to run this service"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/StructuredErrorResponse"
+            },
+            "description": "The request could not be processed correctly by the server"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "requestid",
+            "pattern": "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}",
+            "format": "uuid",
+            "description": "The id of the request",
+            "type": "string",
+            "required": true
+          },
+          {
+            "schema": {
+              "$ref": "#/definitions/koza.api.types.request.transitionFeedback"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "tags": [
+          "Requests"
+        ]
+      }
+    },
+    "/requests/{requestid}/transition/kdvcancels/new": {
+      "post": {
+        "summary": "Refuse pending request",
+        "x-context-name": "requestId",
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "x-context-location": "path",
+        "produces": [
+          "application/json",
+          "application/xml",
+          "text/html"
+        ],
+        "description": "",
+        "operationId": "koza.api.rest.request.transition.kdvCancelsNew",
+        "responses": {
+          "204": {
+            "description": "The request was successful but no content will be returned"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/StructuredErrorResponse"
+            },
+            "description": "The request is invalid"
+          },
+          "401": {
+            "description": "The user is not authenticated, after authentication the request can be retried"
+          },
+          "403": {
+            "description": "The user is authenticated but does not have permission to run this service"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/StructuredErrorResponse"
+            },
+            "description": "The request could not be processed correctly by the server"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "requestid",
+            "pattern": "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}",
+            "format": "uuid",
+            "description": "The id of the request",
+            "type": "string",
+            "required": true
+          },
+          {
+            "schema": {
+              "$ref": "#/definitions/koza.api.types.request.transitionFeedback"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "tags": [
+          "Requests"
+        ]
+      }
+    },
+    "/requests/{requestid}/transition/kdvcancels/pending": {
+      "post": {
+        "summary": "Refuse pending request",
+        "x-context-name": "requestId",
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "x-context-location": "path",
+        "produces": [
+          "application/json",
+          "application/xml",
+          "text/html"
+        ],
+        "description": "",
+        "operationId": "koza.api.rest.request.transition.kdvCancelsPending",
+        "responses": {
+          "204": {
+            "description": "The request was successful but no content will be returned"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/StructuredErrorResponse"
+            },
+            "description": "The request is invalid"
+          },
+          "401": {
+            "description": "The user is not authenticated, after authentication the request can be retried"
+          },
+          "403": {
+            "description": "The user is authenticated but does not have permission to run this service"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/StructuredErrorResponse"
+            },
+            "description": "The request could not be processed correctly by the server"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "requestid",
+            "pattern": "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}",
+            "format": "uuid",
+            "description": "The id of the request",
+            "type": "string",
+            "required": true
+          },
+          {
+            "schema": {
+              "$ref": "#/definitions/koza.api.types.request.transitionFeedback"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "tags": [
+          "Requests"
+        ]
+      }
+    },
+    "/requests/{requestid}/transition/requestorcancels/approved": {
+      "post": {
+        "summary": "Refuse pending request",
+        "x-context-name": "requestId",
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "x-context-location": "path",
+        "produces": [
+          "application/json",
+          "application/xml",
+          "text/html"
+        ],
+        "description": "",
+        "operationId": "koza.api.rest.request.transition.requestorCancelsApproved",
+        "responses": {
+          "204": {
+            "description": "The request was successful but no content will be returned"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/StructuredErrorResponse"
+            },
+            "description": "The request is invalid"
+          },
+          "401": {
+            "description": "The user is not authenticated, after authentication the request can be retried"
+          },
+          "403": {
+            "description": "The user is authenticated but does not have permission to run this service"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/StructuredErrorResponse"
+            },
+            "description": "The request could not be processed correctly by the server"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "requestid",
+            "pattern": "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}",
+            "format": "uuid",
+            "description": "The id of the request",
+            "type": "string",
+            "required": true
+          },
+          {
+            "schema": {
+              "$ref": "#/definitions/koza.api.types.request.transitionFeedback"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "tags": [
+          "Requests"
+        ]
+      }
+    },
+    "/requests/{requestid}/transition/requestorcancels/pending": {
+      "post": {
+        "summary": "Refuse pending request",
+        "x-context-name": "requestId",
+        "security": [
+          {
+            "basic": []
+          }
+        ],
+        "x-context-location": "path",
+        "produces": [
+          "application/json",
+          "application/xml",
+          "text/html"
+        ],
+        "description": "",
+        "operationId": "koza.api.rest.request.transition.requestorCancelsPending",
+        "responses": {
+          "204": {
+            "description": "The request was successful but no content will be returned"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/StructuredErrorResponse"
+            },
+            "description": "The request is invalid"
+          },
+          "401": {
+            "description": "The user is not authenticated, after authentication the request can be retried"
+          },
+          "403": {
+            "description": "The user is authenticated but does not have permission to run this service"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/StructuredErrorResponse"
+            },
+            "description": "The request could not be processed correctly by the server"
+          }
+        },
+        "parameters": [
+          {
+            "in": "path",
+            "name": "requestid",
+            "pattern": "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}",
+            "format": "uuid",
+            "description": "The id of the request",
+            "type": "string",
+            "required": true
+          },
+          {
+            "schema": {
+              "$ref": "#/definitions/koza.api.types.request.transitionFeedback"
+            },
+            "in": "body",
+            "name": "body"
+          }
+        ],
+        "consumes": [
+          "application/json",
+          "application/xml"
+        ],
+        "tags": [
+          "Requests"
+        ]
+      }
+    }
+  },
+  "produces": [
+    "application/json",
+    "application/xml"
+  ],
+  "host": "api-gw-a.antwerpen.be",
+  "schemes": [
+    "https"
+  ],
+  "definitions": {
+    "koza.api.types.request.requestor": {
+      "type": "object",
+      "required": [
+        "id",
+        "firstName",
+        "lastName",
+        "birthday",
+        "sex",
+        "email",
+        "anonymous",
+        "address"
+      ],
+      "properties": {
+        "birthday": {
+          "format": "date",
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "address": {
+          "$ref": "#/definitions/koza.api.types.request.address"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "nationalRegistryNumber": {
+          "type": "string"
+        },
+        "sex": {
+          "type": "string"
+        },
+        "contact": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/koza.api.types.request.contact"
+          }
+        },
+        "anonymous": {
+          "type": "boolean"
+        },
+        "id": {
+          "pattern": "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}",
+          "format": "uuid",
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        }
+      }
+    },
+    "koza.api.types.request.property": {
+      "type": "object",
+      "required": [
+        "key",
+        "value"
+      ],
+      "properties": {
+        "value": {
+          "type": "string"
+        },
+        "key": {
+          "type": "string"
+        }
+      }
+    },
+    "koza.api.types.childCare.childCare": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "childCareType",
+        "childCarePriceType",
+        "activated",
+        "acceptsRequests",
+        "qualityLabel",
+        "enabled",
+        "location"
+      ],
+      "properties": {
+        "availableCapacities": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/koza.api.types.childCare.availableCapacity"
+          }
+        },
+        "flexibleSchedule": {
+          "type": "boolean"
+        },
+        "licenseStarted": {
+          "format": "date",
+          "type": "string"
+        },
+        "subsidy": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/koza.api.types.childCare.subsidy"
+          }
+        },
+        "bko": {
+          "type": "boolean"
+        },
+        "link": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/koza.api.types.childCare.link"
+          }
+        },
+        "organisation": {
+          "type": "string"
+        },
+        "childCarePriceType": {
+          "type": "string"
+        },
+        "deactivated": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "enabled": {
+          "type": "boolean"
+        },
+        "maintainer": {
+          "type": "string"
+        },
+        "capacity": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/koza.api.types.childCare.capacity"
+          }
+        },
+        "internalName": {
+          "type": "string"
+        },
+        "withAllowance": {
+          "type": "boolean"
+        },
+        "qualityLabel": {
+          "type": "boolean"
+        },
+        "rate": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/koza.api.types.childCare.childCareRate"
+          }
+        },
+        "contact": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/koza.api.types.childCare.contact"
+          }
+        },
+        "establishmentNumber": {
+          "type": "string"
+        },
+        "warranty": {
+          "type": "string"
+        },
+        "id": {
+          "pattern": "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}",
+          "format": "uuid",
+          "type": "string"
+        },
+        "tag": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/koza.api.types.childCare.tag"
+          }
+        },
+        "ptoDescription": {
+          "type": "string"
+        },
+        "childCareType": {
+          "type": "string"
+        },
+        "openingHour": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/koza.api.types.childCare.openingHour"
+          }
+        },
+        "salaried": {
+          "type": "boolean"
+        },
+        "respiteDays": {
+          "type": "string"
+        },
+        "registrationFee": {
+          "type": "string"
+        },
+        "accessories": {
+          "$ref": "#/definitions/koza.api.types.childCare.accessory"
+        },
+        "acceptsRequests": {
+          "type": "boolean"
+        },
+        "pto": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "location": {
+          "$ref": "#/definitions/koza.api.types.childCare.location"
+        },
+        "activated": {
+          "format": "date-time",
+          "type": "string"
+        }
+      }
+    },
+    "StructuredErrorResponse": {
+      "type": "object",
+      "required": [
+        "code",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        }
+      }
+    },
+    "koza.api.types.request.requestList": {
+      "type": "object",
+      "required": [
+        "count",
+        "totalCount"
+      ],
+      "properties": {
+        "request": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/koza.api.types.request.request"
+          }
+        },
+        "count": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "totalCount": {
+          "format": "int64",
+          "type": "integer"
+        }
+      }
+    },
+    "koza.api.types.request.contact": {
+      "type": "object",
+      "required": [
+        "id",
+        "name"
+      ],
+      "properties": {
+        "phoneNumber": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "id": {
+          "pattern": "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}",
+          "format": "uuid",
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        }
+      }
+    },
+    "koza.api.types.request.update": {
+      "type": "object",
+      "required": [
+        "startDate",
+        "endDate",
+        "childCareId"
+      ],
+      "properties": {
+        "endDate": {
+          "format": "date",
+          "type": "string"
+        },
+        "startDate": {
+          "format": "date",
+          "type": "string"
+        },
+        "childCareId": {
+          "pattern": "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}",
+          "format": "uuid",
+          "type": "string"
+        }
+      }
+    },
+    "koza.api.types.childCare.availableCapacitySchedule": {
+      "type": "object",
+      "required": [
+        "weekDay",
+        "weekDayGranularity"
+      ],
+      "properties": {
+        "weekDay": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "weekDayGranularity": {
+          "type": "string"
+        }
+      }
+    },
+    "koza.api.types.childCare.childCareRate": {
+      "type": "object",
+      "required": [
+        "id",
+        "currency",
+        "childCareRateGranularity",
+        "price"
+      ],
+      "properties": {
+        "childCareRateGranularity": {
+          "type": "string"
+        },
+        "price": {
+          "format": "double",
+          "type": "number"
+        },
+        "currency": {
+          "type": "string"
+        },
+        "id": {
+          "pattern": "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}",
+          "format": "uuid",
+          "type": "string"
+        }
+      }
+    },
+    "koza.api.types.childCare.contact": {
+      "type": "object",
+      "required": [
+        "id",
+        "name"
+      ],
+      "properties": {
+        "phoneNumber": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "contactType": {
+          "type": "string"
+        },
+        "id": {
+          "pattern": "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}",
+          "format": "uuid",
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        }
+      }
+    },
+    "koza.api.types.request.scheduleEntry": {
+      "type": "object",
+      "required": [
+        "dayOfWeek",
+        "dayGranularity"
+      ],
+      "properties": {
+        "dayOfWeek": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "dayGranularity": {
+          "type": "string"
+        }
+      }
+    },
+    "koza.api.types.request.address": {
+      "type": "object",
+      "required": [
+        "id",
+        "street",
+        "streetNumber",
+        "city",
+        "postcode"
+      ],
+      "properties": {
+        "country": {
+          "type": "string"
+        },
+        "streetNumber": {
+          "type": "string"
+        },
+        "city": {
+          "type": "string"
+        },
+        "street": {
+          "type": "string"
+        },
+        "postcode": {
+          "type": "string"
+        },
+        "boxNumber": {
+          "type": "string"
+        },
+        "id": {
+          "pattern": "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}",
+          "format": "uuid",
+          "type": "string"
+        }
+      }
+    },
+    "koza.api.types.request.childCare": {
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "sequenceId"
+      ],
+      "properties": {
+        "isActual": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "establishmentNumber": {
+          "type": "string"
+        },
+        "id": {
+          "pattern": "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}",
+          "format": "uuid",
+          "type": "string"
+        },
+        "sequenceId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "koza.api.types.request.child": {
+      "type": "object",
+      "required": [
+        "id",
+        "birthday",
+        "firstName",
+        "lastName",
+        "childRelationType",
+        "fosterChild"
+      ],
+      "properties": {
+        "birthday": {
+          "format": "date",
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "childRelationType": {
+          "type": "string"
+        },
+        "fosterChild": {
+          "type": "boolean"
+        },
+        "id": {
+          "pattern": "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}",
+          "format": "uuid",
+          "type": "string"
+        }
+      }
+    },
+    "koza.api.types.request.monitor": {
+      "type": "object",
+      "required": [
+        "id",
+        "firstName",
+        "lastName",
+        "email",
+        "organisation"
+      ],
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "phone": {
+          "type": "string"
+        },
+        "organisation": {
+          "type": "string"
+        },
+        "id": {
+          "pattern": "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}",
+          "format": "uuid",
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        }
+      }
+    },
+    "koza.api.types.childCare.capacity": {
+      "type": "object",
+      "required": [
+        "id",
+        "childCareCapacityType",
+        "amount"
+      ],
+      "properties": {
+        "amount": {
+          "format": "double",
+          "type": "number"
+        },
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "pattern": "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}",
+          "format": "uuid",
+          "type": "string"
+        },
+        "childCareCapacityType": {
+          "type": "string"
+        }
+      }
+    },
+    "koza.api.types.request.priorityGroupQuestion": {
+      "type": "object",
+      "required": [
+        "question",
+        "answer"
+      ],
+      "properties": {
+        "question": {
+          "type": "string"
+        },
+        "answer": {
+          "type": "string"
+        }
+      }
+    },
+    "koza.api.types.request.schedule": {
+      "type": "object",
+      "required": [
+        "days",
+        "flexible"
+      ],
+      "properties": {
+        "flexible": {
+          "type": "boolean"
+        },
+        "days": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/koza.api.types.request.scheduleEntry"
+          }
+        }
+      }
+    },
+    "koza.api.types.childCare.subsidy": {
+      "type": "object",
+      "required": [
+        "id",
+        "category",
+        "amount",
+        "subsidyType"
+      ],
+      "properties": {
+        "amount": {
+          "format": "double",
+          "type": "number"
+        },
+        "id": {
+          "pattern": "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}",
+          "format": "uuid",
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        },
+        "subsidySubType": {
+          "type": "string"
+        },
+        "subsidyType": {
+          "type": "string"
+        }
+      }
+    },
+    "koza.api.types.childCare.tag": {
+      "type": "object",
+      "required": [
+        "id",
+        "category",
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "id": {
+          "pattern": "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}",
+          "format": "uuid",
+          "type": "string"
+        },
+        "category": {
+          "type": "string"
+        }
+      }
+    },
+    "koza.api.types.childCare.openingHour": {
+      "type": "object",
+      "required": [
+        "id",
+        "startHour",
+        "endHour"
+      ],
+      "properties": {
+        "endHour": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "startHour": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "weekDay": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "id": {
+          "pattern": "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}",
+          "format": "uuid",
+          "type": "string"
+        }
+      }
+    },
+    "koza.api.types.childCare.accessory": {
+      "type": "object",
+      "properties": {
+        "extraCost": {
+          "type": "object",
+          "properties": {
+            "cost": {
+              "type": "string"
+            },
+            "tag": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "provided": {
+          "type": "object",
+          "properties": {
+            "tag": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "koza.api.types.childCare.childCareList": {
+      "type": "object",
+      "properties": {
+        "childCare": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/koza.api.types.childCare.childCare"
+          }
+        }
+      }
+    },
+    "koza.api.types.request.transition": {
+      "type": "object",
+      "required": [
+        "id",
+        "started",
+        "fromState",
+        "toState"
+      ],
+      "properties": {
+        "fromState": {
+          "type": "string"
+        },
+        "toState": {
+          "type": "string"
+        },
+        "property": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/koza.api.types.request.property"
+          }
+        },
+        "started": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "id": {
+          "pattern": "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}",
+          "format": "uuid",
+          "type": "string"
+        }
+      }
+    },
+    "koza.api.types.childCare.link": {
+      "type": "object",
+      "required": [
+        "uri",
+        "domain"
+      ],
+      "properties": {
+        "domain": {
+          "type": "string"
+        },
+        "uri": {
+          "format": "uri",
+          "type": "string"
+        }
+      }
+    },
+    "koza.api.types.childCare.availableCapacity": {
+      "type": "object",
+      "required": [
+        "id",
+        "capacity",
+        "startDate",
+        "schedules"
+      ],
+      "properties": {
+        "endDate": {
+          "format": "date",
+          "type": "string"
+        },
+        "startMonth": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "schedules": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/koza.api.types.childCare.availableCapacitySchedule"
+          }
+        },
+        "id": {
+          "pattern": "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}",
+          "format": "uuid",
+          "type": "string"
+        },
+        "endMonth": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "startDate": {
+          "format": "date",
+          "type": "string"
+        },
+        "capacity": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "koza.api.types.childCare.location": {
+      "type": "object",
+      "required": [
+        "id",
+        "street",
+        "streetNumber",
+        "postcode",
+        "district",
+        "coordinates"
+      ],
+      "properties": {
+        "country": {
+          "type": "string"
+        },
+        "streetNumber": {
+          "type": "string"
+        },
+        "street": {
+          "type": "string"
+        },
+        "district": {
+          "type": "string"
+        },
+        "postcode": {
+          "type": "string"
+        },
+        "coordinates": {
+          "type": "object",
+          "required": [
+            "x",
+            "y"
+          ],
+          "properties": {
+            "x": {
+              "format": "double",
+              "type": "number"
+            },
+            "y": {
+              "format": "double",
+              "type": "number"
+            }
+          }
+        },
+        "boxNumber": {
+          "type": "string"
+        },
+        "id": {
+          "pattern": "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}",
+          "format": "uuid",
+          "type": "string"
+        }
+      }
+    },
+    "koza.api.types.request.childSibling": {
+      "type": "object",
+      "required": [
+        "id",
+        "birthday",
+        "firstName",
+        "lastName"
+      ],
+      "properties": {
+        "birthday": {
+          "format": "date",
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "id": {
+          "pattern": "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}",
+          "format": "uuid",
+          "type": "string"
+        }
+      }
+    },
+    "koza.api.types.request.request": {
+      "type": "object",
+      "required": [
+        "id",
+        "groupId",
+        "started",
+        "modified",
+        "state",
+        "requestor",
+        "child",
+        "childCare",
+        "period",
+        "schedule"
+      ],
+      "properties": {
+        "period": {
+          "type": "object",
+          "required": [
+            "startDate"
+          ],
+          "properties": {
+            "endDate": {
+              "format": "date",
+              "type": "string"
+            },
+            "startDate": {
+              "format": "date",
+              "type": "string"
+            }
+          }
+        },
+        "subsidy": {
+          "type": "object",
+          "required": [
+            "priorityGroup"
+          ],
+          "properties": {
+            "priorityGroup": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/koza.api.types.request.priorityGroup"
+              }
+            },
+            "calculatedSubsidyType": {
+              "type": "string"
+            }
+          }
+        },
+        "childCare": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/koza.api.types.request.childCare"
+          }
+        },
+        "groupId": {
+          "pattern": "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}",
+          "format": "uuid",
+          "type": "string"
+        },
+        "started": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "monitor": {
+          "$ref": "#/definitions/koza.api.types.request.monitor"
+        },
+        "transition": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/koza.api.types.request.transition"
+          }
+        },
+        "requestor": {
+          "$ref": "#/definitions/koza.api.types.request.requestor"
+        },
+        "schedule": {
+          "$ref": "#/definitions/koza.api.types.request.schedule"
+        },
+        "modified": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "comment": {
+          "type": "string"
+        },
+        "id": {
+          "pattern": "[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}|[0-9a-fA-F]{32}",
+          "format": "uuid",
+          "type": "string"
+        },
+        "state": {
+          "type": "string"
+        },
+        "child": {
+          "$ref": "#/definitions/koza.api.types.request.child"
+        },
+        "childSibling": {
+          "$ref": "#/definitions/koza.api.types.request.childSibling"
+        }
+      }
+    },
+    "koza.api.types.request.priorityGroup": {
+      "type": "object",
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "question": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/koza.api.types.request.priorityGroupQuestion"
+          }
+        },
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "koza.api.types.request.transitionFeedback": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "basic": {
+      "type": "basic"
+    }
+  },
+  "swagger": "2.0",
+  "info": {
+    "description": "",
+    "title": "KOZA Swagger API",
+    "version": "1.0"
+  },
+  "consumes": [
+    "application/json",
+    "application/xml"
+  ]
+}
