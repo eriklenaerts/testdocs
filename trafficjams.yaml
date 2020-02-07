@@ -1,0 +1,296 @@
+swagger: '2.0'
+info:
+  version: '1.0.0'
+  title: Antwerp Traffic Jams
+  description: Use this API to retrieve the length of the traffic jams. The underlying data is based on regular data imports from Be Mobile. Currently this API only returns data for Antwerp, excluding the ring road around Antwerp City.
+  contact:
+    name: Erik Lenaerts
+    email: myacpaas@digipolis.be
+host: api-gw.antwerpen.be
+basePath: /acpaas/trafficjams
+schemes: 
+- https
+paths:
+  "/trafficjams":
+    get:
+      summary: Returns a list of traffic jam lengths in Antwerp
+      description: Returns a number of traffic jam records for a given time period. Use paging options to control the number of items per page.
+      tags:
+        - Traffic Jam
+      produces:
+        - application/hal+json
+        - application/problem+json
+      parameters:
+        - in: query
+          name: start
+          format: date-time
+          type: string
+          required: false
+          description: the starting date (format [RFC3339](https://www.ietf.org/rfc/rfc3339.txt)) of the traffic jam period. 
+        - in: query
+          name: end
+          format: date-time
+          type: string
+          required: false
+          description: the end date (format [RFC3339](https://www.ietf.org/rfc/rfc3339.txt)) of the traffic jam period
+        - in: query
+          name: page
+          type: string
+          required: true
+          description: Starting offset for the list, this can be either a number or the literal 'last'
+        - in: query
+          name: pagesize
+          type: integer
+          required: true
+          description: Max number of items for each page
+        - in: query
+          name: paging-strategy
+          type: string
+          required: false
+          default: noCount
+          description: Specify the paging strategy, i.e. if totalPages and totalElements should be included in the response output. 
+          
+          
+            **Note:** The withCount takes substantially more time. 2 operations are executed in the back, one for the records, another one for the counters.
+          enum: 
+          - noCount
+          - withCount
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/trafficJams'
+        400:
+          description: Bad request
+          schema:
+            $ref: '#/definitions/error'
+        500:
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/error'
+  "/trafficjams/{id}":
+    get:
+      summary: retrieve traffic jam information on a given moment in Antwerp
+      description: This will result in one record containing the length (in km) of the traffic jam in Antwerp
+      tags:
+        - Traffic Jam
+      produces:
+        - application/json
+        - application/problem+json
+      parameters:
+        - in: path
+          name: id
+          type: string
+          required: true
+          description: > 
+            Provide an id in the form of a an RFC3339 formatted string.
+            ```'Current'``` is a special value that you can use to receive the most recent/current traffic jam information.
+          x-example: '2012-01-01T01:00:00+01:00 or current'
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/trafficJam'
+        400:
+          description: Bad request
+          schema:
+            $ref: '#/definitions/error'
+        404:
+          description: Not found
+          schema:
+            $ref: '#/definitions/error'
+        500:
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/error'
+  "/system/status/health":
+    get:
+      summary: Returns the health status of this Service
+      description: Returns high level information about the service according to the status &amp; [monitoring spec of Digipolis](https://github.com/digipolisantwerpdocumentation/status-monitoring)
+      tags:
+      - System
+      produces:
+        - application/json
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/healthStatus'  
+        500:
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/error'
+  "/system/status/health/components":
+    get:
+      summary: Returns the health status of this Service
+      description: Returns information about the service and its underlying components according to the status &amp; [monitoring spec of Digipolis](https://github.com/digipolisantwerpdocumentation/status-monitoring)
+      tags:
+      - System
+      produces:
+        - application/json
+        - application/problem+json
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: '#/definitions/healthStatusComponents'  
+        500:
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/error'
+definitions:
+  trafficJam: 
+    type: object
+    properties:
+      length: 
+        type: integer
+        description: the actual length of the traffic jam in km
+        example: 120
+      timestamp: 
+        type: string
+        format: date-time
+        description: the timestamp when the length of the traffic jam was measured in Antwerp. The timestamp is formatted according to the [RFC3339](https://www.ietf.org/rfc/rfc3339.txt) specification
+        example: '2012-01-01T01:00:00+01:00'
+  trafficJams:
+    type: object
+    properties:
+      _links:
+        $ref: '#/definitions/links'
+      _embedded: 
+        type: object
+        description: the collection of traffic jam records
+        properties:
+          trafficJams:
+            type: array
+            items:
+              $ref: '#/definitions/trafficJam'
+      _page:
+        $ref: '#/definitions/pages'
+  links:
+    type: object
+    description: provides navigational uri's to other pages of the collection
+    properties:
+      self:
+        type: string
+        description: contains a link to this page of this collection
+        example: 'https://template-api.digipolis.be/base?pagesize=5&page=5'
+      first:
+        type: string
+        description: contains a link to the first page of this collection
+        example: 'https://template-api.digipolis.be/base?pagesize=5&page=0'
+      last:
+        type: string
+        description: contains a link to the last page of this collection
+        example: 'https://template-api.digipolis.be/base?pagesize=5&page=17'
+      prev:
+        type: string
+        description: contains a link to the previous page of this collection
+        example: 'https://template-api.digipolis.be/base?pagesize=5&page=0'
+      next:
+        type: string
+        description: contains a link to the next page of this collection
+        example: 'https://template-api.digipolis.be/base?pagesize=5&page=10'
+  pages:
+    type: object
+    description: a generic model used to describe paging information when requesting a list of resources
+    required: 
+    - size
+    - number
+    properties:
+      size:
+        type: integer
+        description: returns the size of a page provided in the pagesize query parameter of the request 
+        example: '10'
+      totalElements:
+        type: integer
+        description: the total number of items in the resulting collection
+        example: '34'
+      totalPages:
+        type: integer
+        description: the total number of pages in the resulting array. This is calculated with the given size value 
+        example: '4'
+      number:
+        type: integer
+        description: return the page number provided in the page query parameter of the resuest
+        example: '0'    
+  error:
+    type: object
+    description: a generic model used to describe errors as a result of incorrect or failed HTTP requests .
+    properties:
+      type:
+        type: string
+        description: A URI identifying this error. The URI can lead to humane readable information about this error
+      title:
+        type: string
+        description: a short description about the error occurred
+      status:
+        type: string
+        description: the corresponding HTTP result code
+      identifier:
+        type: string
+        description: a unique identifier of the given error
+      code:
+        type: string
+        description: the code of the given error
+  healthStatus:
+    type: object
+    description: A high level health status result 
+    properties:
+      status:
+        description: Contains a high level status of the health for this service
+        type: string
+        example: ok
+        enum: 
+        - 'ok'
+        - 'degraded'
+        - 'outage'
+  healthStatusComponents:
+    type: object
+    description: A health status result including the details of underlying components 
+    properties:
+      status:
+        description: Contains a high level status of the health for this service
+        type: string
+        example: 'outage'
+        enum: 
+        - 'ok'
+        - 'degraded'
+        - 'outage'
+      components:
+        type: array
+        items:
+          type: object
+          properties:
+            name:
+              type: string
+              description: the name of the underlying component
+              example: 'eventhandler'
+            status:
+              type: string
+              enum: 
+              - 'ok'
+              - 'degraded'
+              - 'outage'
+              description: the status of the component
+              example: 'outage'
+            errormessage:
+              type: string
+              description: Contains the actual message in case of a problem               
+              example: 'timeout'
+            details:
+              type: string
+              description: more information about the problem at hand
+              example: 'Messages are not received due to the eventhandler who seems to be too busy.'
+            type:
+              type: string
+              description: the type of problem that occurred
+              example: 'event'
+            code:
+              type: string
+              description: the code of the problem that occurred
+              example: 'TIMEOUT504'
+tags:
+  - name: Traffic Jam
+    description: Operations related to traffic jams in Antwerp
+  - name: System
+    description: Technical operations for health checks, monitoring & caching
